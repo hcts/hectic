@@ -1,0 +1,3 @@
+= Hectic
+
+A simple account-management app.
