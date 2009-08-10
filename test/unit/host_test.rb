@@ -1,20 +1,39 @@
 require 'test_helper'
 
 class HostTest < ActiveSupport::TestCase
-  should_validate_presence_of :smtp_server_name
-  should_validate_presence_of :smtp_server_port
-  should_validate_presence_of :smtp_server_username
-  should_validate_presence_of :smtp_server_password
+  should_have_many :accounts
 
-  should_validate_numericality_of :smtp_server_port
+  should_have_readonly_attributes :name
+  should_allow_mass_assignment_of :smtp_username
+  should_allow_mass_assignment_of :smtp_password
 
-  should 'generate smtp_server_address' do
-    host = Host.make(:smtp_server_name => 'example.com', :smtp_server_port => 465)
-    host.smtp_server_address.should == '[example.com]:465'
+  should_not_allow_mass_assignment_of :pop_server
+  should_not_allow_mass_assignment_of :smtp_server
+  should_not_allow_mass_assignment_of :smtp_credentials
+
+  should_validate_presence_of :name
+  should_validate_presence_of :smtp_username
+  should_validate_presence_of :smtp_password
+
+  should 'generate pop_server' do
+    host = Host.make(:name => 'example.com')
+    host.pop_server.should == 'pop.example.com'
   end
 
-  should 'generate smtp_server_credentials' do
-    host = Host.make(:smtp_server_username => 'bob', :smtp_server_password => 'foo')
-    host.smtp_server_credentials.should == 'bob:foo'
+  should 'generate smtp_server' do
+    host = Host.make(:name => 'example.com')
+    host.smtp_server.should == '[smtp.example.com]:587'
+  end
+
+  should 'generate smtp_credentials' do
+    host = Host.make(:smtp_username => 'bob', :smtp_password => 'foo')
+    host.smtp_credentials.should == 'bob:foo'
+  end
+
+  should 'parse smtp_credentials' do
+    host = Host.make(:smtp_username => 'bob', :smtp_password => 'foo')
+    host = Host.find(host.id)
+    host.smtp_username.should == 'bob'
+    host.smtp_password.should == 'foo'
   end
 end
