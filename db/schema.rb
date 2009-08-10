@@ -9,6 +9,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20090810120827) do
+
+  create_table "hosts", :force => true do |t|
+    t.string   "smtp_server_address"
+    t.string   "smtp_server_credentials"
+    t.string   "smtp_server_name"
+    t.integer  "smtp_server_port",        :default => 587
+    t.string   "smtp_server_username"
+    t.string   "smtp_server_password"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
