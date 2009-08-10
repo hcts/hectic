@@ -4,11 +4,12 @@ class HostTest < ActiveSupport::TestCase
   should_have_many :accounts
 
   should_have_readonly_attributes :name
+
   should_allow_mass_assignment_of :smtp_username
   should_allow_mass_assignment_of :smtp_password
+  should_allow_mass_assignment_of :pop_server
+  should_allow_mass_assignment_of :smtp_server
 
-  should_not_allow_mass_assignment_of :pop_server
-  should_not_allow_mass_assignment_of :smtp_server
   should_not_allow_mass_assignment_of :smtp_credentials
 
   should_validate_presence_of :name

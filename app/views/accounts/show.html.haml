@@ -1,0 +1,13 @@
+.back
+  = link_to "&larr; #{@account.host.name}", @account.host
+
+%h1= @account.username
+%dl
+  %dt Password
+  %dd= link_to @account.password, edit_account_path(@account)
+  %dt Public Email
+  %dd= @account.public_email
+  %dt Private Email
+  %dd= @account.private_email
+  %dt Mailbox Path
+  %dd= @account.mailbox_path

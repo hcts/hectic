@@ -1,0 +1,16 @@
+.back= link_to '&larr; Hosts', root_path
+
+%h1= @host.name
+%dl
+  %dt POP Server
+  %dd= link_to @host.pop_server, edit_host_path(@host)
+  %dt SMTP Server
+  %dd= link_to @host.smtp_server, edit_host_path(@host)
+  %dt SMTP Credentials
+  %dd= link_to @host.smtp_credentials, edit_host_path(@host)
+
+%h2 Accounts
+%ul= render @host.accounts
+
+%h3= 'Create a New Account'
+= render :partial => 'accounts/form', :locals => { :account => @host.accounts.build }

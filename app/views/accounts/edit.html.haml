@@ -1,0 +1,17 @@
+.back
+  = link_to "&larr; #{@account.username}", @account
+
+%h1= "Change #{@account.username}'s Password"
+- form_for @account do |form|
+  = form.error_messages
+
+  .fields
+    .field
+      = form.label :password
+      = form.text_field :password
+
+  .buttons
+    .button
+      = form.submit 'Save'
+      or
+      = link_to 'Cancel', @account

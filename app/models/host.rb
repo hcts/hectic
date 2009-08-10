@@ -2,7 +2,11 @@ class Host < ActiveRecord::Base
   has_many :accounts
 
   attr_readonly   :name
-  attr_accessible :smtp_username, :smtp_password
+  attr_accessible :name
+  attr_accessible :pop_server
+  attr_accessible :smtp_server
+  attr_accessible :smtp_username
+  attr_accessible :smtp_password
 
   validates_presence_of :name
   validates_presence_of :smtp_username

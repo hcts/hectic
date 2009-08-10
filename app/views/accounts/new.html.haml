@@ -1,0 +1,5 @@
+.back
+  = link_to "&larr; #{@host.name}", @host
+
+%h1 Create a New Account
+= render :partial => 'form', :locals => { :account => @account }

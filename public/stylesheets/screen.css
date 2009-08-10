@@ -1,0 +1,13 @@
+h1, h2, h3 {
+  font-weight: normal;
+}
+
+form .errorExplanation {
+  margin-bottom: 1em;
+}
+form .fields .field label {
+  display: block;
+}
+form .buttons {
+  margin-top: 1em;
+}

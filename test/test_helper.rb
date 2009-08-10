@@ -3,10 +3,8 @@ ENV['RAILS_ENV'] = 'test'
 require File.expand_path(File.dirname(__FILE__) + '/../config/environment')
 require 'test_help'
 
-begin
-  require 'redgreen'
-rescue LoadError
-  # no colors
+if $stdin.tty?
+  require 'redgreen' rescue nil
 end
 
 class ActiveSupport::TestCase

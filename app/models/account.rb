@@ -2,6 +2,7 @@ class Account < ActiveRecord::Base
   belongs_to :host
 
   attr_readonly   :username
+  attr_accessible :username
   attr_accessible :password
 
   validates_presence_of :username
