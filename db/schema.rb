@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090810124020) do
+ActiveRecord::Schema.define(:version => 20090811104632) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "host_id"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20090810124020) do
     t.string   "smtp_credentials"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "pop_login_via",    :default => "username"
   end
 
 end

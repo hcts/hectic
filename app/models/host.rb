@@ -6,6 +6,7 @@ class Host < ActiveRecord::Base
   attr_readonly   :name
   attr_accessible :name
   attr_accessible :pop_server
+  attr_accessible :pop_login_via
   attr_accessible :smtp_server
   attr_accessible :smtp_username
   attr_accessible :smtp_password
@@ -13,9 +14,11 @@ class Host < ActiveRecord::Base
   before_validation :normalize_name
 
   validates_presence_of :name
+  validates_presence_of :pop_login_via
   validates_presence_of :smtp_username
   validates_presence_of :smtp_password
   validates_uniqueness_of :name
+  validates_inclusion_of :pop_login_via, :in => %w(username public_email)
 
   attr_writer :smtp_username
   attr_writer :smtp_password

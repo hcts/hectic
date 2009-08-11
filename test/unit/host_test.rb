@@ -8,13 +8,18 @@ class HostTest < ActiveSupport::TestCase
   should_allow_mass_assignment_of :smtp_username
   should_allow_mass_assignment_of :smtp_password
   should_allow_mass_assignment_of :pop_server
+  should_allow_mass_assignment_of :pop_login_via
   should_allow_mass_assignment_of :smtp_server
 
   should_not_allow_mass_assignment_of :smtp_credentials
 
   should_validate_presence_of :name
+  should_validate_presence_of :pop_login_via
   should_validate_presence_of :smtp_username
   should_validate_presence_of :smtp_password
+
+  should_allow_values_for     :pop_login_via, 'username', 'public_email'
+  should_not_allow_values_for :pop_login_via, 'foo', :message => :inclusion
 
   context 'with an existing host' do
     setup { Host.make }

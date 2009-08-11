@@ -4,6 +4,8 @@
 %dl
   %dt POP Server
   %dd= link_to @host.pop_server, edit_host_path(@host)
+  %dt POP Login Via
+  %dd= link_to @host.pop_login_via, edit_host_path(@host)
   %dt SMTP Server
   %dd= link_to @host.smtp_server, edit_host_path(@host)
   %dt SMTP Credentials

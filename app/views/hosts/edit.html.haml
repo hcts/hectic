@@ -10,6 +10,9 @@
       = form.label :pop_server, 'POP Server'
       = form.text_field :pop_server
     .field
+      = form.label :pop_login_via, 'POP Login Via'
+      = form.select :pop_login_via, %w(username public_email)
+    .field
       = form.label :smtp_server, 'SMTP Server'
       = form.text_field :smtp_server
     .field
