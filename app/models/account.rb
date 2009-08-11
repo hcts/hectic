@@ -1,6 +1,8 @@
 class Account < ActiveRecord::Base
   belongs_to :host
 
+  default_scope   :order => :username
+
   attr_readonly   :username
   attr_accessible :username
   attr_accessible :password

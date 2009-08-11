@@ -1,6 +1,8 @@
 class Host < ActiveRecord::Base
   has_many :accounts
 
+  default_scope   :order => :name
+
   attr_readonly   :name
   attr_accessible :name
   attr_accessible :pop_server
