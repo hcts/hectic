@@ -4,7 +4,7 @@ class AccountsController < ApplicationController
   def create
     @account = @host.accounts.build(params[:account])
     if @account.save
-      redirect_to @host
+      redirect_to @account
     else
       render :new
     end

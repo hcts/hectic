@@ -13,6 +13,15 @@ class AccountTest < ActiveSupport::TestCase
   should_validate_presence_of :username
   should_validate_presence_of :password
 
+  context 'with an existing account' do
+    setup { Account.make }
+    should_validate_uniqueness_of :username, :scoped_to => :host_id
+  end
+
+  should 'normalize username' do
+    Account.make(:username => ' Fred ').username.should == 'fred'
+  end
+
   should 'generate public_email' do
     host    = Host.make(:name => 'example.com')
     account = host.accounts.make(:username => 'bob')

@@ -8,9 +8,12 @@ class Host < ActiveRecord::Base
   attr_accessible :smtp_username
   attr_accessible :smtp_password
 
+  before_validation :normalize_name
+
   validates_presence_of :name
   validates_presence_of :smtp_username
   validates_presence_of :smtp_password
+  validates_uniqueness_of :name
 
   attr_writer :smtp_username
   attr_writer :smtp_password
@@ -28,6 +31,10 @@ class Host < ActiveRecord::Base
   end
 
   private
+
+  def normalize_name
+    self.name = self.name.to_s.strip.downcase
+  end
 
   def generate_pop_server
     self.pop_server = "pop.#{name}"
