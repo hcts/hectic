@@ -1,7 +1,7 @@
 class Account < ActiveRecord::Base
   belongs_to :host
 
-  default_scope   :order => :username
+  named_scope :alphabetized, :order => :username
 
   attr_readonly   :username
   attr_accessible :username
@@ -13,8 +13,8 @@ class Account < ActiveRecord::Base
   validates_presence_of :password
   validates_uniqueness_of :username, :scope => :host_id
 
-  before_save :generate_public_email
-  before_save :generate_private_email
+  before_save :generate_email
+  before_save :generate_local_email
   before_save :generate_mailbox_path
 
   private
@@ -23,12 +23,12 @@ class Account < ActiveRecord::Base
     self.username = self.username.to_s.strip.downcase
   end
 
-  def generate_public_email
-    self.public_email = "#{username}@#{host.name}"
+  def generate_email
+    self.email = "#{username}@#{host.name}"
   end
 
-  def generate_private_email
-    self.private_email = "#{username}@#{host.name}.local"
+  def generate_local_email
+    self.local_email = "#{username}@#{host.local_name}"
   end
 
   def generate_mailbox_path

@@ -2,23 +2,9 @@
   = form.error_messages
 
   .fields
-    - if host.new_record?
-      .field
-        = form.label :name
-        = form.text_field :name
-    - else
-      .field
-        = form.label :pop_server, 'POP Server'
-        = form.text_field :pop_server
-      .field
-        = form.label :smtp_server, 'SMTP Server'
-        = form.text_field :smtp_server
     .field
-      = form.label :smtp_username, 'SMTP Username'
-      = form.text_field :smtp_username
-    .field
-      = form.label :smtp_password, 'SMTP Password'
-      = form.text_field :smtp_password
+      = form.label :name
+      = form.text_field :name
   .buttons
     .button
       = form.submit 'Save this Host'

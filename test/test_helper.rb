@@ -13,9 +13,7 @@ class ActiveSupport::TestCase
 end
 
 Host.blueprint do
-  name          { Faker::Internet.domain_name }
-  smtp_username { Faker::Internet.user_name }
-  smtp_password { Faker.letterify('????????') }
+  name { Faker::Internet.domain_name }
 end
 
 Account.blueprint do

@@ -2,9 +2,9 @@ class CreateHosts < ActiveRecord::Migration
   def self.up
     create_table :hosts do |t|
       t.string :name
+      t.string :local_name # these are postfix's virtual mailbox domains
       t.string :pop_server
       t.string :smtp_server
-      t.string :smtp_credentials
       t.timestamps
     end
   end

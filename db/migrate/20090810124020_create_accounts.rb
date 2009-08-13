@@ -4,8 +4,8 @@ class CreateAccounts < ActiveRecord::Migration
       t.references :host
       t.string :username
       t.string :password
-      t.string :public_email
-      t.string :private_email
+      t.string :email
+      t.string :local_email
       t.string :mailbox_path
       t.timestamps
     end

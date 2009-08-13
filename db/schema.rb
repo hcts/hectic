@@ -9,14 +9,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090811104632) do
+ActiveRecord::Schema.define(:version => 20090810124020) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "host_id"
     t.string   "username"
     t.string   "password"
-    t.string   "public_email"
-    t.string   "private_email"
+    t.string   "email"
+    t.string   "local_email"
     t.string   "mailbox_path"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -24,12 +24,11 @@ ActiveRecord::Schema.define(:version => 20090811104632) do
 
   create_table "hosts", :force => true do |t|
     t.string   "name"
+    t.string   "local_name"
     t.string   "pop_server"
     t.string   "smtp_server"
-    t.string   "smtp_credentials"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "pop_login_via",    :default => "username"
   end
 
 end

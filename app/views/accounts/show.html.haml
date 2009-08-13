@@ -5,9 +5,9 @@
 %dl
   %dt Password
   %dd= link_to @account.password, edit_account_path(@account)
-  %dt Public Email
-  %dd= @account.public_email
-  %dt Private Email
-  %dd= @account.private_email
+  %dt Email
+  %dd= @account.email
+  %dt Local Email
+  %dd= @account.local_email
   %dt Mailbox Path
   %dd= @account.mailbox_path
