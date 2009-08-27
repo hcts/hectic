@@ -1,5 +1,5 @@
 %h1 Hosts
-%ul= render @hosts
+%table= render @hosts
 
 %h2 Create a New Host
 = render :partial => 'form', :locals => { :host => Host.new }

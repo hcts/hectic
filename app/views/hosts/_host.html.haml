@@ -1,2 +1,3 @@
-%li[host]
-  = link_to host.name, host
+%tr[host]
+  %td= link_to host.name, host
+  %td= pluralize host.accounts.count, 'Account'
