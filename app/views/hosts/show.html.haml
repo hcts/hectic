@@ -7,8 +7,8 @@
   %dt SMTP Server
   %dd= link_to @host.smtp_server, edit_host_path(@host)
 
-%h2 Accounts
-%ul= render @host.accounts.alphabetized
+%h2= pluralize @host.accounts.size, 'Account'
+%table= render @host.accounts.alphabetized
 
 %h3= 'Create a New Account'
 = render :partial => 'accounts/form', :locals => { :account => @host.accounts.build }

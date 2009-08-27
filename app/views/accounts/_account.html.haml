@@ -1,2 +1,3 @@
-%li[account]
-  = link_to account.username, account
+%tr[account]
+  %td= link_to account.username, account
+  %td= format_account_limit(account.limit)

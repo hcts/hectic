@@ -7,6 +7,7 @@ class AccountTest < ActiveSupport::TestCase
 
   should_have_readonly_attributes :username
   should_allow_mass_assignment_of :password
+  should_allow_mass_assignment_of :limit
 
   should_not_allow_mass_assignment_of :email
   should_not_allow_mass_assignment_of :local_email
@@ -14,11 +15,15 @@ class AccountTest < ActiveSupport::TestCase
 
   should_validate_presence_of :username
   should_validate_presence_of :password
-  
+  should_validate_presence_of :limit
+
   should_ensure_length_at_least :password, 8
   should_allow_values_for :password, 'abcde123', 'abc12345'
   should_not_allow_values_for :password, 'abcdefgh', :message => 'must contain at least 3 numbers'
   should_not_allow_values_for :password, '12345678', :message => 'must contain at least 3 letters'
+
+  should_validate_numericality_of :limit, :message => 'must be 0 or a positive integer'
+  should_not_allow_values_for :limit, -1, 3.14159, :message => 'must be 0 or a positive integer'
 
   context 'with an existing account' do
     setup { Account.make }

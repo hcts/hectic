@@ -1,7 +1,7 @@
 .back
   = link_to "&larr; #{@account.username}", @account
 
-%h1= "Change #{@account.username}'s Password"
+%h1= "Edit #{@account.username}'s Account"
 - form_for @account do |form|
   = form.error_messages
 
@@ -9,6 +9,10 @@
     .field
       = form.label :password
       = form.text_field :password
+    .field
+      = form.label :limit
+      = form.text_field :limit
+      KB (Set to 0 for Unlimited)
 
   .buttons
     .button
