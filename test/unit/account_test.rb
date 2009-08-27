@@ -14,6 +14,11 @@ class AccountTest < ActiveSupport::TestCase
 
   should_validate_presence_of :username
   should_validate_presence_of :password
+  
+  should_ensure_length_at_least :password, 8
+  should_allow_values_for :password, 'abcde123', 'abc12345'
+  should_not_allow_values_for :password, 'abcdefgh', :message => 'must contain at least 3 numbers'
+  should_not_allow_values_for :password, '12345678', :message => 'must contain at least 3 letters'
 
   context 'with an existing account' do
     setup { Account.make }

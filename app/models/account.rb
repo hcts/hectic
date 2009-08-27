@@ -11,8 +11,13 @@ class Account < ActiveRecord::Base
 
   validates_presence_of :username
   validates_presence_of :password
+
   validates_uniqueness_of :username, :scope => :host_id
 
+  validates_length_of :password, :minimum => 8
+  validates_format_of :password, :with => /([A-Za-z].*){3}/, :message => 'must contain at least 3 letters'
+  validates_format_of :password, :with => /(\d.*){3}/,       :message => 'must contain at least 3 numbers'
+  
   before_save :generate_email
   before_save :generate_local_email
   before_save :generate_mailbox_path

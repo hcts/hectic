@@ -19,5 +19,5 @@ end
 Account.blueprint do
   host
   username { Faker::Internet.user_name }
-  password { Faker.letterify('????????') }
+  password { Faker.bothify('??#??#??#') }
 end
