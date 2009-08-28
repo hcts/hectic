@@ -12,6 +12,6 @@
   %dt Mailbox Path
   %dd= @account.mailbox_path
   %dt Limit
-  %dd= link_to format_account_limit(@account.limit), edit_account_path(@account)
+  %dd= link_to format_account_limit(@account.limit_in_kilobytes), edit_account_path(@account)
 
 %p= link_to "Delete #{@account.username}'s Account.", @account, :method => :delete, :confirm => 'Are you sure?'
