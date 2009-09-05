@@ -6,6 +6,8 @@ class Account < ActiveRecord::Base
   attr_readonly   :username
   attr_accessible :username
   attr_accessible :password
+  attr_accessible :ignore_password_errors
+  attr_accessor   :ignore_password_errors
   attr_accessible :limit_in_kilobytes
   attr_writer     :limit_in_kilobytes
 
@@ -15,9 +17,9 @@ class Account < ActiveRecord::Base
   validates_uniqueness_of :username, :scope => :host_id
 
   validates_presence_of :password
-  validates_length_of   :password, :minimum => 8
-  validates_format_of   :password, :with => /([A-Za-z].*){3}/, :message => 'must contain at least 3 letters'
-  validates_format_of   :password, :with => /(\d.*){3}/,       :message => 'must contain at least 3 numbers'
+  validates_length_of   :password, :minimum => 8, :unless => :ignore_password_errors
+  validates_format_of   :password, :with => /([A-Za-z].*){3}/, :message => 'must contain at least 3 letters', :unless => :ignore_password_errors
+  validates_format_of   :password, :with => /(\d.*){3}/,       :message => 'must contain at least 3 numbers', :unless => :ignore_password_errors
 
   validates_numericality_of :limit_in_kilobytes, :only_integer => true, :greater_than_or_equal_to => 0, :message => 'must be 0 or a positive integer'
 

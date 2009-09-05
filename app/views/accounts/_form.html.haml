@@ -12,6 +12,8 @@
   .buttons
     .button
       = form.submit 'Save'
+      - if account.errors.on(:password)
+        = form.submit 'Ignore password errors', :name => 'account[ignore_password_errors]'
       - unless current_page?(@host)
         or
         = link_to 'Cancel', @host

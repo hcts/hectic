@@ -5,6 +5,7 @@ class AccountTest < ActiveSupport::TestCase
 
   should_have_readonly_attributes :username
   should_allow_mass_assignment_of :password
+  should_allow_mass_assignment_of :ignore_password_errors
   should_allow_mass_assignment_of :limit_in_kilobytes
 
   should_not_allow_mass_assignment_of :email
@@ -19,6 +20,11 @@ class AccountTest < ActiveSupport::TestCase
   should_allow_values_for       :password, 'abcde123', 'abc12345'
   should_not_allow_values_for   :password, 'abcdefgh', :message => 'must contain at least 3 numbers'
   should_not_allow_values_for   :password, '12345678', :message => 'must contain at least 3 letters'
+
+  context 'ignore_password_errors' do
+    subject { Account.make_unsaved(:ignore_password_errors => true) }
+    should_allow_values_for :password, 'short', 'abcdefgh', '12345678'
+  end
 
   should_validate_numericality_of :limit_in_kilobytes, :message => 'must be 0 or a positive integer'
   should_allow_values_for         :limit_in_kilobytes, '2'
