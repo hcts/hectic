@@ -3,8 +3,6 @@ require 'test_helper'
 class HostTest < ActiveSupport::TestCase
   should_have_many :accounts
 
-  should_have_named_scope :alphabetized, :order => :name
-
   should_have_readonly_attributes :name
   should_allow_mass_assignment_of :pop_server
   should_allow_mass_assignment_of :smtp_server

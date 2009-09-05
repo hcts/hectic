@@ -3,8 +3,6 @@ require 'test_helper'
 class AccountTest < ActiveSupport::TestCase
   should_belong_to :host
 
-  should_have_named_scope :alphabetized, :order => :username
-
   should_have_readonly_attributes :username
   should_allow_mass_assignment_of :password
   should_allow_mass_assignment_of :limit_in_kilobytes
