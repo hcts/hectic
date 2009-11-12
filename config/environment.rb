@@ -7,9 +7,6 @@ RAILS_GEM_VERSION = '2.3.4' unless defined? RAILS_GEM_VERSION
 require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
-  # Specify gems that this application depends on and have them installed with rake gems:install
-  config.gem 'haml'
-
   # Skip frameworks you're not going to use. To use Rails without a database,
   # you must remove the Active Record framework.
   config.frameworks -= [ :active_resource, :action_mailer ]
