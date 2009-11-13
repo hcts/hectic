@@ -16,6 +16,12 @@ class NetworkInterfacesController < ApplicationController
     end
   end
 
+  def tick
+    @network_interface = NetworkInterface.find(params[:id])
+    @network_interface.tick!
+    redirect_to network_interfaces_path
+  end
+
   def destroy
     @network_interface = NetworkInterface.find(params[:id])
     @network_interface.destroy

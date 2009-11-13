@@ -3,6 +3,10 @@ class NetworkInterface < ActiveRecord::Base
 
   before_destroy :destroy_artifacts
 
+  def self.tick_each!
+    find_each(&:tick!)
+  end
+
   def tick!
     download = snmp_fetch(:ifInOctets, :indexed => true)
     upload   = snmp_fetch(:ifOutOctets, :indexed => true)

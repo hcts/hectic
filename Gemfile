@@ -3,10 +3,11 @@ disable_system_gems
 clear_sources
 source 'http://gemcutter.org'
 
-gem 'rails','2.3.4'
-gem 'haml', '2.2.3'
-gem 'rrdb', '0.0.2', :git => 'git://github.com/JEG2/rrdb.git', :commit => '6935419'
-gem 'snmp', '1.0.2'
+gem 'rails',    '2.3.4'
+gem 'haml',     '2.2.3'
+gem 'rrdb',     '0.0.2', :git => 'git://github.com/JEG2/rrdb.git', :commit => '6935419'
+gem 'snmp',     '1.0.2'
+gem 'whenever', '0.4.0'
 
 only :development, :test do
   gem 'sqlite3-ruby', '= 1.2.4'

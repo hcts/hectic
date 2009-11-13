@@ -3,6 +3,9 @@
   &mdash;
   = network_interface.interface_description
 %p= network_interface.description
+%p
+  = "Updated #{time_ago_in_words(network_interface.updated_at)} ago."
+  = link_to "Force update.", tick_network_interface_path(network_interface), :method => :put
 
 - network_interface.each_graph_url do |graph_url|
   %p= image_tag(graph_url)
