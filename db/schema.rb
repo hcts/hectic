@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090827100744) do
+ActiveRecord::Schema.define(:version => 20091113061010) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "host_id"
@@ -28,6 +28,13 @@ ActiveRecord::Schema.define(:version => 20090827100744) do
     t.string   "local_name"
     t.string   "pop_server"
     t.string   "smtp_server"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "network_interfaces", :force => true do |t|
+    t.string   "host"
+    t.integer  "snmp_index"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

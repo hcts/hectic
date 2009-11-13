@@ -2,6 +2,7 @@ bin/*
 doc/*
 db/*.sqlite3
 log/*.log
+public/system
 tmp/*
 vendor/bundler_gems
 !vendor/bundler_gems/cache
