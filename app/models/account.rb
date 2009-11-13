@@ -10,6 +10,7 @@ class Account < ActiveRecord::Base
   attr_accessor   :ignore_password_errors
   attr_accessible :limit_in_kilobytes
   attr_writer     :limit_in_kilobytes
+  attr_accessible :notes
 
   before_validation :normalize_username
 

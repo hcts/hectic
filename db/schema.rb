@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091113061010) do
+ActiveRecord::Schema.define(:version => 20091113103902) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "host_id"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20091113061010) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "limit",        :default => 0
+    t.text     "notes"
   end
 
   create_table "hosts", :force => true do |t|

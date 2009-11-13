@@ -7,6 +7,7 @@ class AccountTest < ActiveSupport::TestCase
   should_allow_mass_assignment_of :password
   should_allow_mass_assignment_of :ignore_password_errors
   should_allow_mass_assignment_of :limit_in_kilobytes
+  should_allow_mass_assignment_of :notes
 
   should_not_allow_mass_assignment_of :email
   should_not_allow_mass_assignment_of :limit
