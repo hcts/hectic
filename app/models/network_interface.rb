@@ -1,6 +1,8 @@
 class NetworkInterface < ActiveRecord::Base
   PERIODS = %w(day week month year)
 
+  before_destroy :destroy_artifacts
+
   def tick!
     download = snmp_fetch(:ifInOctets, :indexed => true)
     upload   = snmp_fetch(:ifOutOctets, :indexed => true)
@@ -124,5 +126,13 @@ class NetworkInterface < ActiveRecord::Base
 
   def graph_path(period)
     Pathname.new(rrdb.path).dirname.join("#{self.id}-#{period}.png")
+  end
+
+  def destroy_artifacts
+    File.delete(rrdb.path)
+
+    PERIODS.each do |period|
+      File.delete(graph_path(period))
+    end
   end
 end

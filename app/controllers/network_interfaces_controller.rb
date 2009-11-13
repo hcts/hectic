@@ -15,4 +15,10 @@ class NetworkInterfacesController < ApplicationController
       render :new
     end
   end
+
+  def destroy
+    @network_interface = NetworkInterface.find(params[:id])
+    @network_interface.destroy
+    redirect_to network_interfaces_path
+  end
 end

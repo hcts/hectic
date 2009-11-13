@@ -6,3 +6,5 @@
 
 - network_interface.each_graph_url do |graph_url|
   %p= image_tag(graph_url)
+
+%p= link_to 'Stop monitoring this network interface.', network_interface, :method => 'delete', :confirm => 'Are you sure? This will permanently erase all recorded data.'
