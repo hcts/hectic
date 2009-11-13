@@ -1,5 +1,4 @@
 bundle_path 'vendor/bundler_gems'
-disable_system_gems
 clear_sources
 source 'http://gemcutter.org'
 
@@ -8,10 +7,6 @@ gem 'haml',     '2.2.3'
 gem 'rrdb',     '0.0.2', :git => 'git://github.com/JEG2/rrdb.git', :commit => '6935419'
 gem 'snmp',     '1.0.2'
 gem 'whenever', '0.4.0'
-
-only :development, :test do
-  gem 'sqlite3-ruby', '= 1.2.4'
-end
 
 only :test do
   gem 'faker',     '0.3.1'
