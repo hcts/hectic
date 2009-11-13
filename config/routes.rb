@@ -3,5 +3,7 @@ ActionController::Routing::Routes.draw do |map|
     host.resources :accounts, :shallow => true
   end
 
-  map.root :controller => :hosts
+  map.resources :network_interfaces
+
+  map.root :controller => :dashboards
 end

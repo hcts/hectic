@@ -1,0 +1,7 @@
+.back= link_to '&larr; Dashboard', root_path
+
+%h1 Network Interfaces
+= render @network_interfaces
+
+%h2 Monitor a New Network Interface
+= render :partial => 'form', :locals => { :network_interface => NetworkInterface.new }

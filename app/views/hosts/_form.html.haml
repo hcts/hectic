@@ -8,6 +8,6 @@
   .buttons
     .button
       = form.submit 'Save this Host'
-      - unless current_page?('/')
+      - unless current_page?(hosts_path)
         or
-        = link_to 'Cancel', root_path
+        = link_to 'Cancel', hosts_path

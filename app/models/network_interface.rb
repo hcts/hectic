@@ -1,14 +1,34 @@
 class NetworkInterface < ActiveRecord::Base
+  PERIODS = %w(day week month year)
+
   def tick!
     download = snmp_fetch(:ifInOctets, :indexed => true)
     upload   = snmp_fetch(:ifOutOctets, :indexed => true)
 
     store(Time.now, :download => download, :upload => upload)
     update_graphs!
+
+    touch
   end
 
-  def graph_url(period)
-    '/' + graph_path(period).relative_path_from(Rails.root.join('public'))
+  def each_graph_url
+    document_root = Rails.root.join('public')
+
+    PERIODS.each do |period|
+      path = graph_path(period)
+
+      if path.exist?
+        yield '/' + path.relative_path_from(document_root)
+      end
+    end
+  end
+
+  def description
+    @description ||= snmp_fetch('sysDescr.0')
+  end
+
+  def interface_description
+    @interface_description ||= snmp_fetch('ifDescr', :indexed => true)
   end
 
   private
@@ -95,13 +115,11 @@ class NetworkInterface < ActiveRecord::Base
   end
 
   def update_graphs!
-    %w(day week month year).each do |period|
-      create_graph(period)
-    end
+    PERIODS.each { |period| create_graph(period) }
   end
 
   def create_graph(period)
-    rrdb.class.run_command("#{rrdb.class.config[:rrdtool_path]} graph #{graph_path(period)} --start -#{1.send(period)} DEF:download=#{rrdb.path}:download:AVERAGE DEF:upload=#{rrdb.path}:upload:AVERAGE AREA:download#00FF00:'Download' LINE1:upload#0000FF:'Upload'")
+    rrdb.class.run_command("#{rrdb.class.config[:rrdtool_path]} graph #{graph_path(period)} --start -#{1.send(period)} --title #{period.humanize} DEF:download=#{rrdb.path}:download:AVERAGE DEF:upload=#{rrdb.path}:upload:AVERAGE AREA:download#00FF00:'Download' LINE1:upload#0000FF:'Upload'")
   end
 
   def graph_path(period)

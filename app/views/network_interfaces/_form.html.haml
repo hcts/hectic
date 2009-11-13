@@ -1,0 +1,16 @@
+- form_for network_interface do |form|
+  = form.error_messages
+
+  .fields
+    .field
+      = form.label :host
+      = form.text_field :host
+    .field
+      = form.label :snmp_index
+      = form.text_field :snmp_index
+  .buttons
+    .button
+      = form.submit 'Save this Network Interface'
+      - unless current_page?(network_interfaces_path)
+        or
+        = link_to 'Cancel', network_interfaces_path

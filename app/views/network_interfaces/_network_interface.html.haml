@@ -1,0 +1,8 @@
+%h2
+  = network_interface.host
+  &mdash;
+  = network_interface.interface_description
+%p= network_interface.description
+
+- network_interface.each_graph_url do |graph_url|
+  %p= image_tag(graph_url)
