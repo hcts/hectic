@@ -1,6 +1,6 @@
 class AccountsController < ApplicationController
   before_filter :load_host,    :only => [:new, :create]
-  before_filter :load_account, :only => [:show, :edit, :update, :destroy]
+  before_filter :load_account, :only => [:show, :edit, :update, :disable, :enable, :destroy]
 
   def create
     @account = @host.accounts.build(params[:account])
@@ -17,6 +17,16 @@ class AccountsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def disable
+    @account.update_attribute(:enabled, false)
+    redirect_to @account
+  end
+
+  def enable
+    @account.update_attribute(:enabled, true)
+    redirect_to @account
   end
 
   def destroy

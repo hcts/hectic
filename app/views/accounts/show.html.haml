@@ -1,7 +1,17 @@
 .back
   = link_to "&larr; #{@account.host.name}", @account.host
 
-%h1= @account.username
+%h1
+  = @account.username
+  - unless @account.enabled?
+    &mdash;
+    DISABLED
+
+- if @account.enabled?
+  %p= link_to 'Temporarily disable this account.', disable_account_path(@account), :method => :put, :confirm => 'Are you sure?'
+- else
+  %p= link_to 'Re-enable this account.', enable_account_path(@account), :method => :put, :confirm => 'Are you sure?'
+
 %dl
   %dt Password
   %dd= link_to @account.password, edit_account_path(@account)
@@ -16,4 +26,4 @@
   %dt Notes
   %dd= link_to @account.notes, edit_account_path(@account)
 
-%p= link_to "Permanently delete #{@account.username}'s account.", @account, :method => :delete, :confirm => 'Are you sure?'
+%p= link_to 'Permanently delete this account.', @account, :method => :delete, :confirm => 'Are you sure?'
