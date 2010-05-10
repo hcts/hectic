@@ -1,3 +1,4 @@
+.rvmrc
 bin/*
 doc/*
 db/*.sqlite3
