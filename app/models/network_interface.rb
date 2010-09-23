@@ -125,7 +125,15 @@ class NetworkInterface < ActiveRecord::Base
   end
 
   def create_graph(period)
-    rrdb.class.run_command("#{rrdb.class.config[:rrdtool_path]} graph #{graph_path(period)} --start -#{1.send(period)} --title #{period.humanize} DEF:download=#{rrdb.path}:download:AVERAGE DEF:upload=#{rrdb.path}:upload:AVERAGE AREA:download#00FF00:'Download' LINE1:upload#0000FF:'Upload'")
+    rrdb.class.run_command <<-CMD.squish
+      #{rrdb.class.config[:rrdtool_path]} graph #{graph_path(period)}
+        --start -#{1.send(period)}
+        --title #{period.humanize}
+        DEF:download=#{rrdb.path}:download:AVERAGE
+        DEF:upload=#{rrdb.path}:upload:AVERAGE
+        AREA:download#00FF00:'Download'
+        LINE1:upload#0000FF:'Upload'
+    CMD
   end
 
   def graph_path(period)
